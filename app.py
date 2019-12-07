@@ -6,6 +6,3 @@ app = Flask(__name__)
 def home():
     return 'This is Main Page'
 
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0')
