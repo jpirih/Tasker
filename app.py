@@ -1,6 +1,11 @@
-from flask import Flask
-from main import bp as main_bp
+from flask import Flask, render_template
 
 
 app = Flask(__name__)
-app.register_blueprint(main_bp)
+
+
+@app.route('/')
+def home():
+    """Main page view controller"""
+    title:str = 'Home'
+    return render_template('main/index.html', title=title)
