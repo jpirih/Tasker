@@ -1,9 +1,9 @@
 from flask import render_template
-from app import app
+from tasker.main import bp
 
 
-@app.route('/')
+@bp.route('/')
 def home():
     """Main page view controller"""
-    title:str = 'Home'
+    title: str = 'Home'
     return render_template('main/index.html', title=title)
