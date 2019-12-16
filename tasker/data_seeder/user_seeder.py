@@ -1,4 +1,5 @@
 from tasker.models import User
+from typing import List
 
 
 class UsersSeeder:
@@ -6,6 +7,25 @@ class UsersSeeder:
     username: str = 'john'
     email: str = 'john@exmaple.com'
     password: str = 'john123'
+
+    USERS: List = [
+        {
+            'username': 'ana',
+            'email': 'ana@example.com',
+            'password': 'ana123'
+        },
+        {
+            'username': 'meta',
+            'email': 'meta@example.com',
+            'password': 'meta123'
+        },
+
+        {
+            'username': 'neja',
+            'email': 'neja@example.com',
+            'password': 'neja123'
+        },
+    ]
 
     def find_user(self, username: str):
         """Finds user from db. """
@@ -29,3 +49,8 @@ class UsersSeeder:
                 user = User.save(username, email, password)
         return user
 
+    def seed_sample_users(self) -> None:
+        """Provides list of 3 users for testing and sample data"""
+        for user in self.USERS:
+            self.create_user(username=user['username'], email=user['email'], password=user['password'])
+        print('\n{} new users were saved to database.'.format(len(self.USERS)))

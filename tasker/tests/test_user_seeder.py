@@ -1,3 +1,4 @@
+from tasker.models import User
 from tasker.tests import BaseTestCase
 
 
@@ -16,4 +17,10 @@ class UserSeederTestCase(BaseTestCase):
         self.assertEqual(user.username, 'ana')
         self.assertEqual(user.email, 'ana@example.com')
         self.assertNotEqual(user.username, 'john')
+
+    def test_seeding_sample_users(self) -> None:
+        """It tests that sample users get saved to db properly"""
+        self.user_seeder.seed_sample_users()
+        sample_users = User.query.all()
+        self.assertEqual(len(sample_users), 3)
 

@@ -1,7 +1,7 @@
 import unittest
 from tasker import create_app, db
 from config import TestConfig
-from tasker.data_seeder import UsersSeeder
+from tasker.data_seeder import UsersSeeder, PostsSeeder
 
 
 class BaseTestCase(unittest.TestCase):
@@ -12,6 +12,7 @@ class BaseTestCase(unittest.TestCase):
     app_context.push()
 
     user_seeder = UsersSeeder()
+    posts_seeder = PostsSeeder()
 
     def setUp(self) -> None:
         db.create_all()

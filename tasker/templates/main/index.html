@@ -9,4 +9,25 @@
         </div>
     </div> <br> <!-- end of page heading -->
 
+    <!-- page content -->
+    <div class="row justify-content-md-center">
+        <div class="co-sm-6 text-center">
+            <h3>Recent Posts</h3>
+        </div>
+    </div> <br> <!-- end of section title -->
+
+    <div class="row">
+        <div class="col-sm-8">
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="card card-body">
+                        <p> {{ post.author.username }} <sapn class="bold">says:</sapn> {{ post.body }} </p>
+                    </div> <br> <!-- end of post card -->
+                {% endfor %}
+
+            {% endif %}
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+
 {% endblock %}
