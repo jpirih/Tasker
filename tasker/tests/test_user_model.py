@@ -26,3 +26,10 @@ class UserModelTestCase(BaseTestCase):
         u = User.get_user_by_username(username=user.username)
         self.assertIsNotNone(u)
         self.assertEqual(u.username, 'john')
+
+    def test_get_user_by_email(self):
+        """It tests finding user from db by email"""
+        user = self.user_seeder.create_user()
+        u = User.get_user_by_email(email=user.email)
+        self.assertIsNotNone(u)
+        self.assertEqual(u.email, 'john@exmaple.com')

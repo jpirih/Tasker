@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- page heading -->
+    <div class="row justfy-content-md-center">
+        <div class="col-sm-6">
+            <h1>Register New User</h1>
+        </div>
+    </div> <br> <!-- end of page heading -->
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card card-body card-light bg-light">
+                <form action="" method="post" novalidate>
+                    {{ form.hidden_tag() }}
+                    <!-- username -->
+                    <div class="form-group">
+                        {{ form.username.label(class="control-label") }}
+                        {{ form.username(class="form-control") }}
+                        <p>
+                            {% for error in form.username.errors %}
+                                <span class="ff-error">{{ error }}</span>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <!-- email -->
+                    <div class="form-group">
+                        {{ form.email.label(class="control-label") }}
+                        {{ form.email(class="form-control") }}
+                        <p>
+                            {% for error in form.email.errors %}
+                                <span class="ff-error">{{ error }}</span>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <!-- password -->
+                    <div class="form-group">
+                        {{ form.password.label(class="control-label") }}
+                        {{ form.password(class="form-control") }}
+                        <p>
+                            {% for error in form.password.errors %}
+                                <span class="ff-error">{{ error }}</span>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <!-- repeat password -->
+                    <div class="form-group">
+                        {{ form.password2.label(class="control-label") }}
+                        {{ form.password2(class="form-control") }}
+                        <p>
+                            {% for error in form.password2.errors %}
+                                <span class="ff-error">{{ error }}</span>
+                            {% endfor %}
+                        </p>
+                    </div>
+                    <!-- submit button -->
+                    <div class="form-group">
+                        {{ form.submit(class="btn btn-success") }}
+                    </div>
+                </form> <!-- end of register form -->
+            </div> <!-- end of form card -->
+        </div>
+    </div><!-- end of form row -->
+{% endblock %}

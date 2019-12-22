@@ -1,9 +1,10 @@
 from datetime import datetime
-from tasker import db
+from tasker import db, login
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     """users database table model"""
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(60), unique=True, index=True)
@@ -23,6 +24,7 @@ class User(db.Model):
         """
         Sets password hash for extra security before saving to db.
         @param password:str
+        @rtype None
         """
         self.password_hash = generate_password_hash(password)
 
@@ -35,8 +37,25 @@ class User(db.Model):
         return check_password_hash(self.password_hash, password)
 
     @classmethod
-    def get_user_by_username(cls, username:str) -> 'User':
+    def get_user_by_username(cls, username: str) -> 'User':
+        """
+        Gets user from db. based on given username
+        @param username:str
+        @rtype User
+        @return user:User
+        """
         user = cls.query.filter_by(username=username).first()
+        return user
+
+    @classmethod
+    def get_user_by_email(cls, email: str) -> 'User':
+        """
+        Gets user form db by given email address
+        @param email: str
+        @rtype:User
+        @return user:User
+        """
+        user = cls.query.filter_by(email=email).first()
         return user
 
     @classmethod
@@ -53,3 +72,8 @@ class User(db.Model):
         db.session.add(user)
         db.session.commit()
         return user
+
+
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))

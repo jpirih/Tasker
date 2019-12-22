@@ -19,7 +19,6 @@ class UsersSeeder:
             'email': 'meta@example.com',
             'password': 'meta123'
         },
-
         {
             'username': 'neja',
             'email': 'neja@example.com',
