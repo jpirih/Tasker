@@ -1,0 +1,12 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="row justify-content-md-center">
+            <div class="col-sm-6">
+                {% for message in messages %}
+                    <div class="alert alert-info"><i class="fa fa-info"></i> {{ message }}</div>
+                    </div>
+                {% endfor %}
+        </div> <br> <!-- end of messages section -->
+
+    {% endif %}
+{% endwith %}
