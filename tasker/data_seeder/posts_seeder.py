@@ -1,6 +1,8 @@
 from typing import List
+from datetime import datetime
 from tasker.data_seeder import UsersSeeder
 from tasker.models import Post
+from tasker import db
 
 
 class PostsSeeder:
@@ -32,4 +34,12 @@ class PostsSeeder:
         @return Post
         """
         post = Post.save(body=body, user_id=user_id)
+        return post
+
+    def custom_post(self, body: str, user_id: int, deleted: bool = False,
+                    timestamp: datetime = datetime.utcnow()) -> Post:
+        """Saving new post with some custom fields"""
+        post = Post(body=body, user_id=user_id, deleted=deleted, timestamp=timestamp)
+        db.session.add(post)
+        db.session.commit()
         return post

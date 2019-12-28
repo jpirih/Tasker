@@ -12,6 +12,11 @@ class UserModelTestCase(BaseTestCase):
         self.assertTrue(user.check_password_hash('kekec123'))
         self.assertFalse(user.check_password_hash('john123'))
 
+    def test_user_string_repr(self) -> None:
+        """It tests users model string representation"""
+        user = self.user_seeder.create_user()
+        self.assertEqual(user.__repr__(), '<User: john - john@exmaple.com>')
+
     def test_saving_user(self) -> None:
         """Tests that user saving works properly"""
         u = User.save(username='john', email='john@emxample.com', password='john123')

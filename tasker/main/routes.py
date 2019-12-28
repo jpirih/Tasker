@@ -7,5 +7,5 @@ from tasker.models import  Post
 def home() -> str:
     """Main page view controller"""
     title: str = 'Home'
-    posts = Post.query.all()
+    posts = Post.get_latest_posts()
     return render_template('main/index.html', posts=posts, title=title)

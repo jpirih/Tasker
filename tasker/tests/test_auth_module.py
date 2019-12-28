@@ -18,6 +18,12 @@ class AuthTestCase(BaseTestCase):
         self.assertIn(b'Welcome', response.data)
         self.assertEqual(response.status_code, 200)
 
+    def test_user_must_provide_valid_credentials(self) -> None:
+        """It tests that user can not log in with wrong credentials."""
+        user = self.user_seeder.create_user()
+        response = self.login_user(username='johny', password='john123')
+        self.assertIn(b'Invalid credentials. Please try again.', response.data)
+
     def test_username_is_required(self) -> None:
         """It tests that username is required for login."""
         self.user_seeder.create_user()

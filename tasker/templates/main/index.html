@@ -17,17 +17,9 @@
     </div> <br> <!-- end of section title -->
 
     <div class="row">
-        <div class="col-sm-8">
-            {% if posts %}
-                {% for post in posts %}
-                    <div class="card card-body">
-                        <p> {{ post.author.username }} <sapn class="bold">says:</sapn> {{ post.body }} </p>
-                    </div> <br> <!-- end of post card -->
-                {% endfor %}
-
-            {% endif %}
+        <div class="col-sm-4 align-self-end">
+           {% include 'partials/posts-list.html' %}
         </div>
-        <div class="col-sm-4"></div>
     </div>
 
 {% endblock %}

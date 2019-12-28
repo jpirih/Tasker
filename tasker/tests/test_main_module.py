@@ -15,7 +15,6 @@ class MainTestCase(BaseTestCase):
         self.posts_seeder.seed_sample_posts()
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertIn(b'What a wonderful day', response.data)
 
     def test_page_not_found(self) -> None:
         """It tests that error handlers work properly"""

@@ -1,5 +1,5 @@
 from flask import Blueprint
 
-bp = Blueprint(__name__, 'users', url_prefix='/users')
+bp = Blueprint('users', __name__, url_prefix='/users')
 
 from tasker.users import routes
