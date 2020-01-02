@@ -39,7 +39,7 @@ class Post(db.Model):
         Gets the list of non deleted posts from db
         @return posts: Post
         """
-        posts = cls.query.filter_by(deleted=False).all()
+        posts = cls.query.filter_by(deleted=False).order_by(cls.timestamp.desc()).all()
         return posts
 
     @classmethod

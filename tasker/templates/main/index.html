@@ -10,15 +10,18 @@
     </div> <br> <!-- end of page heading -->
 
     <!-- page content -->
-    <div class="row justify-content-md-center">
-        <div class="co-sm-6 text-center">
-            <h3>Recent Posts</h3>
-        </div>
-    </div> <br> <!-- end of section title -->
 
     <div class="row">
-        <div class="col-sm-4 align-self-end">
+        <div class="col-sm-4">
+            <h3>Recent Posts</h3> <br>
            {% include 'partials/posts-list.html' %}
+        </div>
+        <div class="col-sm-8">
+            <h3>About Tasker</h3> <br>
+            {% for row in about %}
+                <p>{{ row }}</p>
+            {% endfor %}
+
         </div>
     </div>
 

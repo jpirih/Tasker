@@ -20,7 +20,7 @@ class AuthTestCase(BaseTestCase):
 
     def test_user_must_provide_valid_credentials(self) -> None:
         """It tests that user can not log in with wrong credentials."""
-        user = self.user_seeder.create_user()
+        self.user_seeder.create_user()
         response = self.login_user(username='johny', password='john123')
         self.assertIn(b'Invalid credentials. Please try again.', response.data)
 
