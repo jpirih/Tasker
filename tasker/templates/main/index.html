@@ -13,15 +13,24 @@
     <div class="row">
         <div class="col-sm-4">
             <h3>Recent Posts</h3> <br>
-           {% include 'partials/posts-list.html' %}
+            {% include 'partials/posts-list.html' %}
         </div>
         <div class="col-sm-8">
             <h3>About Tasker</h3> <br>
-            {% for row in about %}
-                <p>{{ row }}</p>
-            {% endfor %}
+            <div id="aboutApp">
+                {% for row in about %}
+                    <p id="about{{ loop.index }}">{{ row }}</p>
+                {% endfor %}
+            <button id="readMoreBtn" class="btn btn-primary">More / Less</button>
+            </div>
 
         </div>
+
+
     </div>
 
+{% endblock %}
+
+{% block js_block %}
+    <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 {% endblock %}

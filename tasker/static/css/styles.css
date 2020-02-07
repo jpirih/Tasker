@@ -10,3 +10,8 @@ body {
     font-weight: bold;
     color: red;
 }
+
+.recent-post{
+    background-color: lightblue;
+    border: 2px solid black;
+}

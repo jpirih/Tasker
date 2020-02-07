@@ -1,4 +1,5 @@
 from datetime import datetime
+from sqlalchemy import desc
 
 from tasker import db
 
@@ -55,5 +56,5 @@ class Post(db.Model):
     @classmethod
     def get_latest_posts(cls) -> 'Post':
         """Gets latest 3 latest added posts"""
-        latest_posts = cls.query.order_by(cls.timestamp.desc()).limit(3)
+        latest_posts = cls.query.order_by(desc(Post.timestamp)).limit(3)
         return latest_posts

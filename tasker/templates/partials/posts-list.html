@@ -1,6 +1,6 @@
 {% if posts %}
     {% for post in posts %}
-        <div class="card card-body">
+        <div id="postCard" class="card card-body">
             <p> {{ post.author.username }}
                 <sapn class="bold">says:</sapn>
                 {{ post.body }} </p>
