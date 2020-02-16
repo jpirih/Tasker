@@ -1,4 +1,4 @@
-from tasker.tests import BaseTestCase
+from tests import BaseTestCase
 
 
 class MainTestCase(BaseTestCase):

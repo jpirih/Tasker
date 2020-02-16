@@ -1,4 +1,4 @@
-from tasker.tests import BaseTestCase
+from tests import BaseTestCase
 
 
 class AuthTestCase(BaseTestCase):
@@ -12,8 +12,8 @@ class AuthTestCase(BaseTestCase):
 
     def test_registered_user_can_login(self) -> None:
         """ It test that registered user can login"""
-        user = self.user_seeder.create_user()
-        login_data = dict(username=user.username, password='john123')
+        self.user_seeder.create_user()
+        login_data = dict(username='john', password='john123')
         response = self.client.post('/users/login', data=login_data, follow_redirects=True)
         self.assertIn(b'Welcome', response.data)
         self.assertEqual(response.status_code, 200)
@@ -69,11 +69,11 @@ class AuthTestCase(BaseTestCase):
 
     def test_anyone_can_register_new_user(self) -> None:
         """It tests that anyone can register new user """
-        user_data = dict(username='johana', email='johana@exmample.com', password='johana123', password2='johana123')
+        user_data = dict(username='johanna', email='johana@exmample.com', password='johanna123', password2='johanna123')
         response = self.client.post('/users/register', data=user_data, follow_redirects=True)
 
         self.assertIn(b'Sign In', response.data)
-        self.assertIn(b'johana', response.data)
+        self.assertIn(b'johanna', response.data)
         self.assertEqual(response.status_code, 200)
 
     def test_username_must_be_unique(self) -> None:

@@ -1,10 +1,8 @@
-from tasker import create_app
+from tasker import app
 from tasker import db
 from tasker.models import User, Post
 from tasker.data_seeder import PostsSeeder
 
-
-app = create_app()
 posts_seeder = PostsSeeder()
 
 

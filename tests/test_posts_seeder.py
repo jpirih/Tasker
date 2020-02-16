@@ -1,5 +1,5 @@
 from tasker.models import Post
-from tasker.tests import BaseTestCase
+from tests import BaseTestCase
 
 
 class PostsSeederTestCase(BaseTestCase):

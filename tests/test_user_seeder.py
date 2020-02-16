@@ -1,5 +1,7 @@
 from tasker.models import User
-from tasker.tests import BaseTestCase
+from tests import BaseTestCase
+
+base = BaseTestCase()
 
 
 class UserSeederTestCase(BaseTestCase):

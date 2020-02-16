@@ -1,16 +1,15 @@
 import unittest
-from tasker import create_app, db
+from tasker import app, db
 from config import TestConfig
 from tasker.data_seeder import UsersSeeder, PostsSeeder
 
 
-class BaseTestCase(unittest.TestCase):
+class BaseTestCase( unittest.TestCase):
     """Base tests configuration"""
-    app = create_app(TestConfig)
+    app.config.from_object(TestConfig)
     client = app.test_client()
     app_context = app.app_context()
     app_context.push()
-
     user_seeder = UsersSeeder()
     posts_seeder = PostsSeeder()
 

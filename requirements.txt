@@ -6,7 +6,9 @@ colorama==0.4.1
 coverage==4.5.4
 decorator==4.4.1
 Flask==1.1.1
+Flask-Classful==0.14.2
 Flask-Login==0.4.1
+flask-marshmallow==0.10.1
 Flask-Migrate==2.5.2
 flask-shell-ipython==0.4.1
 Flask-SQLAlchemy==2.4.1
@@ -19,6 +21,8 @@ jedi==0.15.1
 Jinja2==2.10.3
 Mako==1.1.0
 MarkupSafe==1.1.1
+marshmallow==3.4.0
+marshmallow-sqlalchemy==0.21.0
 nose2==0.9.1
 parso==0.5.1
 pickleshare==0.7.5

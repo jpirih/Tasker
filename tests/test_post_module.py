@@ -1,4 +1,4 @@
-from tasker.tests import BaseTestCase
+from tests import BaseTestCase
 
 
 class PostsModuleTestCase(BaseTestCase):
@@ -8,7 +8,7 @@ class PostsModuleTestCase(BaseTestCase):
         """It tests posts list main page"""
         self.user_seeder.create_user()
         self.login_user(username='john', password='john123')
-        response = self.client.get('/posts')
+        response = self.client.get('/posts/')
         self.assertIn(b'Microblog - Posts', response.data)
         self.assertEqual(response.status_code, 200)
 

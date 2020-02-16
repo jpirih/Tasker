@@ -1,5 +1,1 @@
-from flask import Blueprint
-
-bp = Blueprint('errors', __name__)
-
-from tasker.errors import handlers
+from tasker.errors.handlers import ErrorsHandler
