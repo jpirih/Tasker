@@ -1,7 +1,14 @@
+import hashlib
 from datetime import datetime
 from tasker import db, login
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+
+"""association table followers """
+followers = db.Table('followers',
+                     db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
+                     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
+                     )
 
 
 class User(UserMixin, db.Model):
@@ -12,6 +19,13 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     timestamp = db.Column(db.DateTime, default=datetime.utcnow())
     posts = db.relationship('Post', backref='author')
+    followed = db.relationship(
+        'User', secondary=followers,
+        primaryjoin=(followers.c.follower_id == id),
+        secondaryjoin=(followers.c.followed_id == id),
+        backref=db.backref('followers', lazy='dynamic'),
+        lazy='dynamic'
+    )
 
     def __init__(self, username: str, email: str) -> None:
         self.username = username
@@ -35,6 +49,19 @@ class User(UserMixin, db.Model):
         @rtype:bool
         """
         return check_password_hash(self.password_hash, password)
+
+    def avatar(self, size: int) -> str:
+        """
+        Generates users profile avatar based on users email, size can be adjustable.
+        :type size: int
+        """
+        digest = hashlib.md5(self.email.lower().encode('utf-8')).hexdigest()
+        gravatar_url = "https://www.gravatar.com/avatar/{}?d=identicon&s={}".format(digest, size)
+
+        return gravatar_url
+
+    """Followers functionality"""
+    
 
     @classmethod
     def get_user_by_username(cls, username: str) -> 'User':

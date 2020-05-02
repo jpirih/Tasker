@@ -9,6 +9,7 @@ from tasker.models import User
 
 
 class UsersView:
+    title: str
 
     def login(self):
         """User login view controller"""
@@ -46,4 +47,12 @@ class UsersView:
             flash('New user - {} is registered successfully.'.format(user.username))
             return redirect(url_for('login'))
 
-        return render_template('auth/register.html', title=title, form=form )
+        return render_template('auth/register.html', title=title, form=form)
+
+    @login_required
+    def user_profile(self, username: str):
+        """"Users profile page view controller"""
+        self.title = 'Users Profile'
+        user = User.get_user_by_username(username)
+
+        return render_template('auth/users_profile.html', title=self.title, user=user)

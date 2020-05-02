@@ -4,7 +4,7 @@ from config import TestConfig
 from tasker.data_seeder import UsersSeeder, PostsSeeder
 
 
-class BaseTestCase( unittest.TestCase):
+class BaseTestCase(unittest.TestCase):
     """Base tests configuration"""
     app.config.from_object(TestConfig)
     client = app.test_client()

@@ -17,6 +17,7 @@ user_view = UsersView()
 app.add_url_rule('/users/login', 'login', lambda: user_view.login(), methods=['GET', 'POST'])
 app.add_url_rule('/users/logout', 'logout', lambda: user_view.logout())
 app.add_url_rule('/users/register', 'register', lambda: user_view.register(), methods=['GET', 'POST'])
+app .add_url_rule('/users/<username>', 'user-profile', lambda username: user_view.user_profile(username))
 
 login.login_view = 'login'
 from tasker.errors import ErrorsHandler

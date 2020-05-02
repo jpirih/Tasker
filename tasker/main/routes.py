@@ -1,7 +1,8 @@
 from typing import List
 import os
 
-from flask import render_template, url_for
+
+from flask import render_template
 from tasker.models import Post
 from flask_classful import FlaskView
 

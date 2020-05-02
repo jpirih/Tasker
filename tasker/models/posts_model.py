@@ -60,4 +60,3 @@ class Post(db.Model):
         return latest_posts
 
 
-
